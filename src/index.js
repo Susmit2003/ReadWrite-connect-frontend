@@ -3,12 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import SearchContext from './context/SearchContext';
+import SearchState from './context/SearchState';
+import CurrentEditState from './context/CurrentEditState';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <CurrentEditState>
+  <SearchState>
+    
     <App />
-  </React.StrictMode>
+
+  </SearchState>
+  </CurrentEditState>
+    
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
