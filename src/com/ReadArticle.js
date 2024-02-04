@@ -8,6 +8,7 @@ import '../App.css'
 import Pol from './Pol';
 import Edu from './Edu';
 import Nav from './Nav';
+import LastTowArticle from './LastTwoArticle'
 import Home_sec1 from './Home_sec1';
 import SearchState from '../context/SearchState';
 import { SearchContext } from '../context/SearchState';
@@ -38,8 +39,11 @@ export default function ReadArticle() {
 }, []);
 
   const filterData = () => {
+    console.log(articles)
     const arr = articles.filter((e) => {
-      return e.title.includes(state);
+
+      if(e.title) return e.title.includes(state);
+      else return
     })
 
     setCurrArticles([...arr])
@@ -61,7 +65,8 @@ export default function ReadArticle() {
               {
                 !currArticls.length&&<div>
 
-                <Home_sec1/> 
+                {/* <Home_sec1/>  */}
+                <div><LastTowArticle/></div>
                <div id="r_bar"><h2>Recent articles</h2></div>
               <Rec/>
               <div id="r_bar"><h2>sport articles</h2></div>

@@ -11,14 +11,27 @@ function Nav() {
   
 
 
-  const handleClick = () => {
+  const handleClickPol = () => {
    console.log("clll")
     Navigate('/politicsarticle');
   }
+
+  const handleClickEdu = () => {
+    console.log("clll")
+     Navigate('/educational');
+   }
+   const handleClickSpo = () => {
+    console.log("clll")
+     Navigate('/sports');
+   }
+   
   return (
     <div style={{position:"relative"}}>
     <div id="nav">
-    <div onClick={() => handleClick()}>politics</div>
+    <div className='navChild' onClick={() => handleClickPol()}>political</div>
+    <div className='navChild' onClick={() => handleClickSpo()}>Sports</div>
+    <div className='navChild' onClick={() => handleClickEdu()}>Educational</div>
+    
     <div><SearchBar/></div>
     <div id='prfleIc' onClick={() => {setMenuShow(!menuShow)}}>Profile</div>
     

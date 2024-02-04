@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../App.css';
 import {route} from "react-router-dom"
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert2'
 
 export default function Log() {
     const[email, setEmail] = useState("");
@@ -20,6 +21,7 @@ export default function Log() {
         axios.post("http://localhost:8000/signup" ,{email:email, password: pass})
         .then((data) => {
             console.log(data)
+            swal.fire('Signup succesfull')
             
 
         }) 

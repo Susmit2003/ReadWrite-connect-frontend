@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { editContext } from '../context/CurrentEditState';
 import { useContext } from 'react';
 import { Editor } from "@tinymce/tinymce-react";
+import swal from 'sweetalert2';
 
 export default function WriteArticle(props) {
 
@@ -37,6 +38,12 @@ export default function WriteArticle(props) {
 
     function handleArticle(){
 
+        if(!image ||!title ||!over || !des || !con ){
+          swal.fire("required to fill every fill");
+          return;
+
+        }
+
         if(props.id) {
           console.log("id  is ")
           console.log(props.id)
@@ -50,7 +57,15 @@ export default function WriteArticle(props) {
       
 else {
   axios.post("http://localhost:8000/article" ,{image:image,title:title, over:over,des:des,con:con,type:type,id:localStorage.getItem("curr_id")})
-        .then((re) => console.log(re));
+        .then((re) =>{
+          swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your article has been posted",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        })
 
 }
         

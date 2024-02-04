@@ -9,8 +9,9 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
-      <input
+    <div id="searchBar">
+      <input id="searchBarInp"
+       placeholder='Search'
         type="text"
         value={state.searchText}
         onChange={handleChange}
