@@ -15,6 +15,8 @@ import { useContext } from 'react';
 import Educational from './com/Educational';
 import Sports from './com/Sports';
 import Profile from './com/Profile';
+import './index.css';
+
 
 import {
   BrowserRouter as Router,
@@ -26,6 +28,8 @@ import {
 import ReadArticle from './com/ReadArticle';
 import React from 'react';
 import Show_clicked_article from './com/Show_clicked_article';
+import Getallarticlebyaauthor from './com/Getallarticlebyaauthor';
+import Card from './com/Card';
 
 
 function App() {
@@ -40,27 +44,30 @@ function App() {
         <Routes>
         
        <Route path="/signup" element={<Signup />}/> 
-          <Route path="/" element={<Log />}/> {/* Corrected Route */}
+          <Route path="/" element={<ReadArticle />}/> {/* Corrected Route */}
 
           <Route path="/readarticle" element={<ReadArticle/>} /> 
           <Route path="/single_article" element={<Show_clicked_article/>} />
           <Route path="/politicsarticle" element={<Politicsarticle/>} />
           <Route path="/educational" element={<Educational/>} />
           <Route path="/sports" element={<Sports/>} />
+          <Route path="authorArth" element={<Getallarticlebyaauthor/>} />
           
           <Route path="/profile" element={<Profile/>}/>
 
           
           <Route path="/writearticle" element={<WriteArticle/>} />
           <Route path="/recent" element={<Rec/>} />
+          <Route path="/login" element={<Log/>} />
           
           </Routes>
+          
           
       </div>
       
     </BrowserRouter>
 
-  
+    
     );
 }
 

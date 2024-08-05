@@ -24,22 +24,22 @@ export default function ReadArticle() {
   const[curr, setCurr] = useState(state);
 
  useEffect(() => {
-  console.log(state)
+  // console.log(state)
   setCurr(state)
  }, [state])
 
  useEffect(() => {
   axios.get("http://localhost:8000/readallarticle")
   .then((data)=>{
-      console.log(typeof(data.data.data))
-      console.log(data.data.data)
+      // console.log(typeof(data.data.data))
+      // console.log(data.data.data)
       setArticles([...data.data.data])
   })
-  .catch()
+  .catch((err) => console.log(err))
 }, []);
 
   const filterData = () => {
-    console.log(articles)
+    // console.log(articles)
     const arr = articles.filter((e) => {
 
       if(e.title) return e.title.includes(state);
@@ -54,7 +54,7 @@ export default function ReadArticle() {
   }, [state])
 
   useEffect(() => {
-    console.log(currArticls.length)
+    // console.log(currArticls.length)
   }, [currArticls.length])
 
   return (
@@ -66,14 +66,14 @@ export default function ReadArticle() {
                 !currArticls.length&&<div>
 
                 {/* <Home_sec1/>  */}
-                <div><LastTowArticle/></div>
-               <div id="r_bar"><h2>Recent articles</h2></div>
+                <div id="LastTowArticle"><LastTowArticle/></div>
+               
               <Rec/>
               <div id="r_bar"><h2>sport articles</h2></div>
                <Spo/>
-               <div id="r_bar"><h2>educational articles</h2></div>
+              
                <Edu/>
-               <div id="r_bar"><h2>political articles</h2></div>
+               
                <Pol/>
           
               </div>

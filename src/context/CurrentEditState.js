@@ -5,7 +5,7 @@ import React from "react";
 export const editContext = createContext();
 
 const editState = (props) => {
-    const [state, setState] = useState("edgfdf");
+    const [state, setState] = useState("");
 
     const setText = (text) => {
         setState(text);

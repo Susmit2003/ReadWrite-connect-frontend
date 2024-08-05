@@ -1,64 +1,75 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import '../App.css';
-import {route} from "react-router-dom"
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 
 export default function Log() {
-    const[email, setEmail] = useState("");
-    const[pass, setPass] = useState("")
-    const[emai, setEmai] = useState("");
-    const[pas, setPas] = useState("")
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [username , setUsername] = useState("");
 
-    useEffect(() => {
-        console.log(email);
-        console.log(pass)
-    }, [email, pass])
+  useEffect(() => {
+    console.log(email);
+    console.log(pass);
+  }, [email, pass]);
 
-    const handlesigninSubmit = () => {
-      console.log(email);
-        axios.post("http://localhost:8000/signup" ,{email:email, password: pass})
-        .then((data) => {
-            console.log(data)
-            swal.fire('Signup succesfull')
-            
-
-        }) 
-        .catch((err) => {
-            console.log(err)})
-    }
-    
-    const handlesigninSubmit2 = () => {
-      axios.post("http://localhost:8000/signup" ,{email:emai, password: pas})
+  const handleSignupSubmit = () => {
+    console.log(email);
+    axios.post("http://localhost:8000/signup", { email: email, password: pass ,username:username })
       .then((data) => {
-          console.log(data)
-          
-
-      }) 
+        console.log(data);
+        swal.fire('Signup successful');
+      })
       .catch((err) => {
-          console.log(err)})
-  }
-  
+        swal.fire('Signup unsuccessful');
+        console.log(err);
+      });
+  };
+
   return (
-    <div>
-        <div className="parent_div_of_log">
-        <div className="log">
-           <div><input type="email" name="em" placeholder="Enter your email" value={emai}  onChange={(e) => setEmai(e.target.value)}/></div> <br></br>
-           <div> <input type="password" name="pass" placeholder="Enter your password" value={pas} onChange={(e) => setPas(e.target.value)}/></div> <br></br>
-           <Link to="/readarticle"> <button id="b" onClick={handlesigninSubmit2}>Signup as a reader</button></Link> 
-            
-            </div>
-
-
-            <div className="log">
-           <div><input type="email" name="em" placeholder="Enter your email" value={email}  onChange={(e) => setEmail(e.target.value)}/></div> <br></br>
-           <div> <input type="password" name="pass" placeholder="Enter your password" value={pass} onChange={(e) => setPass(e.target.value)}/></div> <br></br>
-           <Link to="/readarticle"> <button id="b" onClick={handlesigninSubmit}>sigup </button></Link> 
-            
-            </div>
-            </div>
-            
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md space-y-8">
+        <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
+        <div className="mb-4">
+          <input
+            type="email"
+            name="em"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <input
+            type="password"
+            name="pass"
+            placeholder="Enter your password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4">
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <Link to="/readarticle">
+          <button
+            onClick={handleSignupSubmit}
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Signup
+          </button>
+        </Link>
+      </div>
     </div>
-  )
+  );
 }
